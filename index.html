@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css" type="text/css">
+
+    <title>Weather App</title>
+</head>
+
+<body>
+    <nav class="banner">Weather Dashboard</nav>
+
+    <div>
+        <div class="search">
+            <h1>Search for a City:</h1>
+            <input class="searchBar" type="search">
+            <button id="searchBtn" type="submit">Search</button>
+
+        </div>
+
+        <div class="container">
+            <h1 id="mainCity">City (8/2/2020)</h1>
+            <img id="weatherPic"/>
+            <ul>
+                <li class="mainTemp"></li>
+                <li class="mainHum"></li>
+                <li class="windSpeed"></li>
+                <li class="uvIndex"></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="daily">
+        <div class="row">
+            <div class="card col" id="dayOne">
+                <div class="card-body">
+                    <ul>
+                        <li class="date">8/2/2020</li>
+                        <li class="img">sun</li>
+                        <li class="Temperature">90.1</li>
+                        <li class="humidity">41%</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="card col" id="dayTwo">
+                <div class="card-body">
+                    <ul>
+                        <li class="date">8/2/2020</li>
+                        <li class="img">sun</li>
+                        <li class="Temperature">90.1</li>
+                        <li class="humidity">41%</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="card col" id="dayThree">
+                <div class="card-body">
+                    <ul>
+                        <li class="date">8/2/2020</li>
+                        <li class="img">sun</li>
+                        <li class="Temperature">90.1</li>
+                        <li class="humidity">41%</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="card col" id="dayFour">
+                <div class="card-body">
+                    <ul>
+                        <li class="date">8/2/2020</li>
+                        <li class="img">sun</li>
+                        <li class="Temperature">90.1</li>
+                        <li class="humidity">41%</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="card col" id="dayFour">
+                <div class="card-body">
+                    <ul>
+                        <li class="date">8/2/2020</li>
+                        <li class="img">sun</li>
+                        <li class="Temperature">90.1</li>
+                        <li class="humidity">41%</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+<!-- <h>5 day Forcast:</h>
+<div class="dayOne">
+    <ul>
+        <li class="date">8/2/2020</li>
+        <li class="img">sun</li>
+        <li class="Temperature">90.1</li>
+        <li class="humidity">41%</li>
+    </ul>
+
+</div>
+<div class="dayTwo">
+    <ul>
+        <li class="date">8/2/2020</li>
+        <li class="img">sun</li>
+        <li class="Temperature">90.1</li>
+        <li class="humidity">41%</li>
+    </ul>
+</div>
+<div class="dayThree">
+    <ul>
+        <li class="date">8/2/2020</li>
+        <li class="img">sun</li>
+        <li class="Temperature">90.1</li>
+        <li class="humidity">41%</li>
+    </ul>
+</div>
+<div class="dayFour">
+    <ul>
+        <li class="date">8/2/2020</li>
+        <li class="img">sun</li>
+        <li class="Temperature">90.1</li>
+        <li class="humidity">41%</li>
+    </ul>
+</div>
+<div class="dayFive">
+    <ul>
+        <li class="date">8/2/2020</li>
+        <li class="img">sun</li>
+        <li class="Temperature">90.1</li>
+        <li class="humidity">41%</li>
+    </ul>
+</div> -->
+
+
+
+<!-- <div>
+    <div class="navbar navbar-light">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+    
+    
+            <div class="jumbotron jumbotron-fluid col-8">
+                <div class="container">
+                    <h1 class="display-4">Fluid jumbotron</h1>
+                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its
+                        parent.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div> -->
