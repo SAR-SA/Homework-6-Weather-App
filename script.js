@@ -35,8 +35,8 @@ $(function () {
             $("#mainCity").text(response.name + todayDate);
             var icon = "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png";
             $("#weatherPic").attr("src", icon);
-            $(".mainTemp").text("Temperature: " + response.main.temp + " F");
-            $(".mainHum").text("Humidity: " + response.main.humidity);
+            $(".mainTemp").text("Temperature: " + response.main.temp + "° F");
+            $(".mainHum").text("Humidity: " + response.main.humidity + "%");
             $(".windSpeed").text("Wind Speed: " + response.wind.speed);
             //$(".uvIndex").text("UV Index: " + response.)
         })
@@ -81,21 +81,28 @@ $(function () {
                         else {
                             //return "purple"
 
-                            uV.css("text-background", " 5px 5px purple");
+                            uV.css("background-color", "purple");
                         }
                         //}
-                        for (let i= 1; i<6; i++) {
-                            let icons = response.daily[i-1].weather[0].icon;
-                            let descriptions = response.daily[i-1].weather[0].description;
-                            let temps = response.daily[i-1].temp.day; 
-                            let humidities = response.daily[i-1].humidity
-                            $(`span.date${i}`).text(moment().add(i-1, 'd').format('l'));
+                        for (let i = 1; i < 6; i++) {
+                            let icons = response.daily[i - 1].weather[0].icon;
+                            let descriptions = response.daily[i - 1].weather[0].description;
+                            let temps = response.daily[i - 1].temp.day;
+                            let humidities = response.daily[i - 1].humidity
+                            $(`span.date${i}`).text(moment().add(i - 1, 'd').format('l'));
                             $(`img.icon${i}`).attr('src', `http://openweathermap.org/img/wn/${icons}.png`).attr("alt", descriptions);
-                            $(`span.temperature${i}`).text(Math.round((temps-273.15)*9/5 + 32));
-                            $(`span.humidity${i}`).text(humidities); 
+                            $(`span.temperature${i}`).text(Math.round((temps - 273.15) * 9 / 5 + 32));
+                            $(`span.humidity${i}`).text(humidities);
                         }
+                        storeCity();
                     })
             });
+
+            var cities = []
+
+        function storeCity() {
+            localStorage.setItem(searchInput.val())
+        }
 
     });
 
