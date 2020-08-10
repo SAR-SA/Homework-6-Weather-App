@@ -1,3 +1,3 @@
 # Homework-6-Weather-App
 
-![](assests/WeatherApp.JPG)
+![](assets/WeatherApp.JPG)
