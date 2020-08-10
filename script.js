@@ -56,37 +56,58 @@ $(function () {
                     .then(function (response) {
                         uvi = response.current.uvi;
                         uV.text("UV Index: " + uvi);
-                       
 
-                        function uviColors() {
-                            if (uV < 2) {
-                                return "green";
-                            }
-                            else if (uV >= 3 && uvi < 6) {
-                                return "yellow"
-                            }
-                            else if (uV >= 6 && uvi < 8) {
-                                return "orange"
-                            }
-                            else if (uV >= 8 && uvi < 10) {
-                                return "red"
-                            }
-                            else return "purple"
+                        //function uviColors() {
+                        if (uV < 2) {
+                            // return "green";
+
+                            uV.css("background-color", "green");
+                        }
+                        else if (uV >= 3 && uvi < 6) {
+                            //return "yellow"
+
+                            uV.css("background-color", "yellow");
+                        }
+                        else if (uV >= 6 && uvi < 8) {
+                            //return "orange"
+
+                            uV.css("background-color", "orange");
+                        }
+                        else if (uV >= 8 && uvi < 10) {
+                            //return "red"
+
+                            uV.css("background-color", "red");
+                        }
+                        else {
+                            //return "purple"
+
+                            uV.css("text-background", " 5px 5px purple");
+                        }
+                        //}
+                        for (let i= 1; i<6; i++) {
+                            let icons = response.daily[i-1].weather[0].icon;
+                            let descriptions = response.daily[i-1].weather[0].description;
+                            let temps = response.daily[i-1].temp.day; 
+                            let humidities = response.daily[i-1].humidity
+                            $(`span.date${i}`).text(moment().add(i-1, 'd').format('l'));
+                            $(`img.icon${i}`).attr('src', `http://openweathermap.org/img/wn/${icons}.png`).attr("alt", descriptions);
+                            $(`span.temperature${i}`).text(Math.round((temps-273.15)*9/5 + 32));
+                            $(`span.humidity${i}`).text(humidities); 
                         }
                     })
             });
 
-        var fiveDaySettings = {
-            "url": `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=a8bcffded6bdeeb862d36f82c2ad45cc`,
-            "method": "GET",
-            "timeout": 0,
-        };
-
-        $.ajax(fiveDaySettings).done(function (response) {
-            console.log(response);
-        });
-
     });
+
+    // var fiveDaySettings = {
+    //     "url": `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=a8bcffded6bdeeb862d36f82c2ad45cc`,
+    //     "method": "GET",
+    //     "timeout": 0,
+    // };
+
+    // $.ajax(fiveDaySettings).done(function (response) {
+    //     console.log(response);
+    // });
 
 
     //Current weather is displayed in the main area
