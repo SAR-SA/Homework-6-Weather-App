@@ -1,7 +1,7 @@
 # Homework-6-Weather-App
 
 ![](assets/WeatherApp.JPG)
-
+![](assets/WeatherApp2.JPG)
 
 Here is a Weather App.
 
