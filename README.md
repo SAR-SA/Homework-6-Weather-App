@@ -3,6 +3,4 @@
 ![](assets/WeatherApp.JPG)
 ![](assets/WeatherApp2.JPG)
 
-Here is a Weather App.
-
-You enter in a city and then you will get the current weather and the 5 day forcast.
+A Weather application that gives you the current weather for your selected area and the 5 day forecast.
