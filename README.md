@@ -1,5 +1,7 @@
 # Homework-6-Weather-App
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ![](assets/WeatherApp.JPG)
 ![](assets/WeatherApp2.JPG)
 
