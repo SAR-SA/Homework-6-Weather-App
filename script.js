@@ -11,6 +11,7 @@ $(function () {
     const todayDate = moment().format(" (M/D/YYYY)");
     const searchBtn = $("#searchBtn");
     const searchInput = $(".searchBar");
+    const searchList = $(".city-list")
     const one = $(".dayOne");
     const two = $(".dayTwo");
     const three = $(".dayThree");
@@ -98,12 +99,67 @@ $(function () {
                     })
             });
 
-            var cities = []
+        // Variables
+  const cities = [];
 
-        function storeCity() {
-            localStorage.setItem(searchInput.val())
-        }
+  // FUNCTIONS
+  function newCity(newItem) {
+    // push into cities array
+    cities.push(newItem);
+  }
 
+  function removeItem(elementRef, itemIndexNum) {
+    // Attach 'click' event to some dom element passed into this function as the first argument
+    elementRef.on("click", function() {
+      // Remove an item from the shopping list by index number
+      // this mutates the original array
+      cities.splice(itemIndexNum, 1);
+      handleDisplayItems();
+    });
+  }
+
+  // display shipping list to card on the dom
+  function handleDisplayItems() {
+    // get a reference to the unordered list where the items will be appended
+    const ul = $(".city-list");
+    // Empty the innerHTML in the <ul> to make room for the altered shopping list
+    ul.empty();
+    // loop through the shopping list to create an <li> and append to the <ul>
+    // the 'item' variable in our callback function being passed into the
+    // forEach references each individual element in the shopping list array
+    cities.forEach(function(item, currentIndex) {
+      // use jQuery to create an <li> and <button>, add class names and set the text
+      const li = $("<li>").text(item).addClass("list-group-item");
+      const removeBtn = $("<button>").addClass("btn btn-danger float-right").text("remove");
+      // call a function to attach a click event for removing items
+      // it requires an element and an index number for an item in an array
+      removeItem(removeBtn, currentIndex);
+
+      // append the removeButton as a child in the <li>
+      li.append(removeBtn);
+      // append the <li> as a child in the <ul>
+      ul.append(li);
+    });
+  }
+
+  // EVENT LISTENERS
+  searchBtn.on("click", function () {
+    event.preventDefault();
+    // capture the input
+    const $inputElem = searchInput;
+    const userInput = $inputElem.val().trim();
+    // remove the text value from the input
+    $inputElem.val("");
+
+    // update the list
+    newCity(userInput);
+    handleDisplayItems();
+  });
+
+  // INITALIZING CODE
+  newCity();
+  newCity();
+  handleDisplayItems();
     });
 
     // var fiveDaySettings = {
