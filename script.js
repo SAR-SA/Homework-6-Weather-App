@@ -97,68 +97,75 @@ $(document).ready(function () {
               $(`span.temperature${i}`).text(Math.round((temps - 273.15) * 9 / 5 + 32));
               $(`span.humidity${i}`).text(humidities);
             }
-             storeCities();
           })
-        init();
-        var cities = [];
-
-        function renderCities() {
-          cityList.innerHTML = "";
-
-          for (var i = 0; i < cities.length; i++) {
-            var city = cities[i];
-
-            var li = document.createElement("li");
-            li.textContent = city;
-            li.setAttribute("data-index", i);
-
-            var button = document.createElement("button");
-            button.textContent = "Delete";
-
-            li.appendChild(button);
-            cityList.appendChild(li);
-          }
-        }
-
-        function init() {
-          const storedCities = JSON.parse(localStorage.getItem("cities"));
-
-          if (storedCities !== null) {
-            cities = storedCities;
-          }
-
-          renderCities();
-        }
-
-        function storeCities() {
-          localStorage.setItem("cities", JSON.stringify(cities));
-        }
-
-          // Return from function early if submitted todoText is blank
-          if (cityText === "") {
-            return;
-          }
-
-          // Add new todoText to todos array, clear the input
-          cities.push(cityName);
-          searchInput.value = "";
-
-          // Store updated todos in localStorage, re-render the list
-          storeCities();
-          renderCities();
       });
+      storeCities();
+  });
 
 
-    //       // Variables
-    // const cities = [];
+  
 
-    // // FUNCTIONS
-    // function newCity() {
-    //   cityList.innerHTML = "";
+  init();
+  var cities = [];
 
-    //    //Render a new li for each todo
-    //    for (var i = 0; i < cities.length; i++) {
-    //      var city = cities[i];
+  function renderCities() {
+    cityList.innerHTML = "";
+
+    for (var i = 0; i < cities.length; i++) {
+      var city = cities[i];
+
+      var li = document.createElement("li");
+      li.textContent = city;
+      li.setAttribute("data-index", i);
+
+      var button = document.createElement("button");
+      button.textContent = "Delete";
+
+      li.appendChild(button);
+      cityList.appendChild(li);
+    }
+  }
+
+  function init() {
+    const storedCities = JSON.parse(localStorage.getItem("cities"));
+
+    if (storedCities !== null) {
+      cities = storedCities;
+    }
+
+    renderCities();
+  }
+
+  function storeCities() {
+    localStorage.setItem("cities", JSON.stringify(cities));
+  }
+
+  // Return from function early if submitted todoText is blank
+  if (cityText === "") {
+    return;
+  }
+
+  // Add new todoText to todos array, clear the input
+  cities.push(cityName);
+  searchInput.value = "";
+
+  // Store updated todos in localStorage, re-render the list
+  storeCities();
+  renderCities();
+
+
+});
+
+ //       // Variables
+        // const cities = [];
+
+        // // FUNCTIONS
+        // function newCity() {
+          //   cityList.innerHTML = "";
+
+          //    //Render a new li for each todo
+          //    for (var i = 0; i < cities.length; i++) {
+            //      var city = cities[i];
 
     //      var li = document.createElement("li");
     //      li.textContent = city;
@@ -226,7 +233,6 @@ $(document).ready(function () {
     // newCity();
     // newCity();
     // handleDisplayItems();
-  });
 
   // var fiveDaySettings = {
   //     "url": `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=a8bcffded6bdeeb862d36f82c2ad45cc`,
@@ -246,6 +252,3 @@ $(document).ready(function () {
 
 
   //The city searched is prepended to the history list
-
-
-});
