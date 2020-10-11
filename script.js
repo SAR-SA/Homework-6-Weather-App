@@ -85,7 +85,7 @@ $(function () {
               $(`span.temperature${i}`).text(Math.round((temps - 273.15) * 9 / 5 + 32));
               $(`span.humidity${i}`).text(humidities);
             }
-            storeCities();
+            // storeCities();
           })
       });
 
@@ -101,7 +101,7 @@ $(function () {
 
     var cityName = searchInput.val().trim();
     console.log("cityName", cityName);
-    storeCity(cityName);
+    storeCities(cityName);
 
     // Return from function early if submitted todoText is blank
     if (cityName === "") {
@@ -114,7 +114,6 @@ $(function () {
     searchInput.value = "";
 
     // Store updated todos in localStorage, re-render the list
-    storeCities();
     renderCities();
   });
 
@@ -147,6 +146,7 @@ $(function () {
   }
 
   function storeCities(newCity) {
+    console.log("newCity", newCity);
     // get cities from ls
   var existingCities = localStorage.getItem("cities");
   // parse it, or if null provide empty array
@@ -155,8 +155,9 @@ $(function () {
   // add new city
   existingCitiesArray.push(newCity);
 
+
   // send it
-  localStorage.setItem("cities", existingCitiesArray);
+  localStorage.setItem("cities", JSON.stringify(existingCitiesArray));
 
   }
 
