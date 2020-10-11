@@ -97,11 +97,10 @@ $(document).ready(function () {
               $(`span.temperature${i}`).text(Math.round((temps - 273.15) * 9 / 5 + 32));
               $(`span.humidity${i}`).text(humidities);
             }
-            // storeCity();
+             storeCities();
           })
         init();
         var cities = [];
-
 
         function renderCities() {
           cityList.innerHTML = "";
@@ -135,24 +134,18 @@ $(document).ready(function () {
           localStorage.setItem("cities", JSON.stringify(cities));
         }
 
-        searchBtn.on("click", function (event) {
-          event.preventDefault();
-
-          var cityText = searchInput.value.trim();
-
           // Return from function early if submitted todoText is blank
           if (cityText === "") {
             return;
           }
 
           // Add new todoText to todos array, clear the input
-          cities.push(cityText);
+          cities.push(cityName);
           searchInput.value = "";
 
           // Store updated todos in localStorage, re-render the list
           storeCities();
           renderCities();
-        });
       });
 
 
