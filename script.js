@@ -1,17 +1,5 @@
-$(document).ready(function () {
-
-  // Today's date from Moment
-  //currentDayElement.text(todayDate.format('dddd, M D YYYY'));
-
-  // let temp = $("#temperature");
-  // let humid = $("#humidity");
-  // let wind = $("#windspeed");
-  // let date = $("#date");
-  // const one = $(".dayOne");
-  // const two = $(".dayTwo");
-  // const three = $(".dayThree");
-  // const four = $(".dayFour");
-  // const five = $(".dayFive");
+$(function () {
+  
   let uV = $(".uvIndex");
   const todayDate = moment().format(" (M/D/YYYY)");
   const searchBtn = $("#searchBtn");
@@ -48,7 +36,7 @@ $(document).ready(function () {
         let lon = response.coord.lon;
         var uvSettings = {
           "url": `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&
-                      exclude={part}&appid=a8bcffded6bdeeb862d36f82c2ad45cc`,
+                    exclude={part}&appid=a8bcffded6bdeeb862d36f82c2ad45cc`,
           "method": "GET",
           "timeout": 0,
         };
@@ -97,75 +85,93 @@ $(document).ready(function () {
               $(`span.temperature${i}`).text(Math.round((temps - 273.15) * 9 / 5 + 32));
               $(`span.humidity${i}`).text(humidities);
             }
+            storeCities();
           })
       });
-      storeCities();
+
+    
   });
 
-
-  
-
-  init();
   var cities = [];
 
-  function renderCities() {
-    cityList.innerHTML = "";
+    init();
 
-    for (var i = 0; i < cities.length; i++) {
-      var city = cities[i];
+    searchBtn.on("click", function (event) {
+      event.preventDefault();
 
-      var li = document.createElement("li");
-      li.textContent = city;
-      li.setAttribute("data-index", i);
+      var cityName = searchInput.val.trim();
 
-      var button = document.createElement("button");
-      button.textContent = "Delete";
+      // Return from function early if submitted todoText is blank
+      if (cityText === "") {
+        return;
+      }
 
-      li.appendChild(button);
-      cityList.appendChild(li);
+      // Add new todoText to todos array, clear the input
+      cities.push(cityName);
+      searchInput.value = "";
+
+      // Store updated todos in localStorage, re-render the list
+      storeCities();
+      renderCities();
+    });
+
+    function renderCities() {
+      cityList.innerHTML = "";
+
+      for (var i = 0; i < cities.length; i++) {
+        var city = cities[i];
+
+        var li = document.createElement("li");
+        li.textContent = city;
+        li.setAttribute("data-index", i);
+
+        var button = document.createElement("button");
+        button.textContent = "Delete";
+
+        li.appendChild(button);
+        cityList.appendChild(li);
+      }
     }
-  }
 
-  function init() {
-    const storedCities = JSON.parse(localStorage.getItem("cities"));
+    function init() {
+      var storedCities = JSON.parse(localStorage.getItem("cities"));
 
-    if (storedCities !== null) {
-      cities = storedCities;
+      if (storedCities !== null) {
+        cities = storedCities;
+      }
+
+      renderCities();
     }
 
-    renderCities();
-  }
-
-  function storeCities() {
-    localStorage.setItem("cities", JSON.stringify(cities));
-  }
-
-  // Return from function early if submitted todoText is blank
-  if (cityText === "") {
-    return;
-  }
-
-  // Add new todoText to todos array, clear the input
-  cities.push(cityName);
-  searchInput.value = "";
-
-  // Store updated todos in localStorage, re-render the list
-  storeCities();
-  renderCities();
-
+    function storeCities() {
+      localStorage.setItem("cities", JSON.stringify(cities));
+    }
 
 });
 
+// Today's date from Moment
+  //currentDayElement.text(todayDate.format('dddd, M D YYYY'));
+  // let temp = $("#temperature");
+  // let humid = $("#humidity");
+  // let wind = $("#windspeed");
+  // let date = $("#date");
+  // const one = $(".dayOne");
+  // const two = $(".dayTwo");
+  // const three = $(".dayThree");
+  // const four = $(".dayFour");
+  // const five = $(".dayFive");
+
+
  //       // Variables
-        // const cities = [];
+    // const cities = [];
 
-        // // FUNCTIONS
-        // function newCity() {
-          //   cityList.innerHTML = "";
+    // // FUNCTIONS
+    // function newCity() {
+    //   cityList.innerHTML = "";
 
-          //    //Render a new li for each todo
-          //    for (var i = 0; i < cities.length; i++) {
-            //      var city = cities[i];
+    //    //Render a new li for each todo
+    //    for (var i = 0; i < cities.length; i++) {
+    //      var city = cities[i];
 
     //      var li = document.createElement("li");
     //      li.textContent = city;
