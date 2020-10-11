@@ -32,8 +32,6 @@ $(document).ready(function () {
       "timeout": 0,
     };
 
-    cities.push(cityName);
-    searchInput.value = "";
 
     $.ajax(settings).done(function (response) {
       console.log(response);
@@ -100,68 +98,76 @@ $(document).ready(function () {
               $(`span.temperature${i}`).text(Math.round((temps - 273.15) * 9 / 5 + 32));
               $(`span.humidity${i}`).text(humidities);
             }
-             storeCities();
           })
-        });
-        
-        init();
-        var cities = [];
+      });
+      storeCities();
+  });
 
-        function renderCities() {
-          cityList.innerHTML = "";
 
-          for (var i = 0; i < cities.length; i++) {
-            var city = cities[i];
+  
 
-            var li = document.createElement("li");
-            li.textContent = city;
-            li.setAttribute("data-index", i);
+  init();
+  var cities = [];
 
-            var button = document.createElement("button");
-            button.textContent = "Delete";
+  function renderCities() {
+    cityList.innerHTML = "";
 
-            li.appendChild(button);
-            cityList.appendChild(li);
-          }
-        }
+    for (var i = 0; i < cities.length; i++) {
+      var city = cities[i];
 
-        function init() {
-          const storedCities = JSON.parse(localStorage.getItem("cities"));
+      var li = document.createElement("li");
+      li.textContent = city;
+      li.setAttribute("data-index", i);
 
-          if (storedCities !== null) {
-            cities = storedCities;
-          }
+      var button = document.createElement("button");
+      button.textContent = "Delete";
 
-          renderCities();
-        }
+      li.appendChild(button);
+      cityList.appendChild(li);
+    }
+  }
 
-        function storeCities() {
-          localStorage.setItem("cities", JSON.stringify(cities));
-        }
+  function init() {
+    const storedCities = JSON.parse(localStorage.getItem("cities"));
 
-          // Return from function early if submitted todoText is blank
-          if (cityText === "") {
-            return;
-          }
+    if (storedCities !== null) {
+      cities = storedCities;
+    }
 
-          // Add new todoText to todos array, clear the input
-         
+    renderCities();
+  }
 
-          // Store updated todos in localStorage, re-render the list
-          storeCities();
-          renderCities();
-        
-        //       // Variables
+  function storeCities() {
+    localStorage.setItem("cities", JSON.stringify(cities));
+  }
+
+  // Return from function early if submitted todoText is blank
+  if (cityText === "") {
+    return;
+  }
+
+  // Add new todoText to todos array, clear the input
+  cities.push(cityName);
+  searchInput.value = "";
+
+  // Store updated todos in localStorage, re-render the list
+  storeCities();
+  renderCities();
+
+
+});
+
+ //       // Variables
         // const cities = [];
-        
+
         // // FUNCTIONS
         // function newCity() {
           //   cityList.innerHTML = "";
-          
+
           //    //Render a new li for each todo
           //    for (var i = 0; i < cities.length; i++) {
             //      var city = cities[i];
-            
+
     //      var li = document.createElement("li");
     //      li.textContent = city;
     //      li.setAttribute("data-index", i);
@@ -228,7 +234,6 @@ $(document).ready(function () {
     // newCity();
     // newCity();
     // handleDisplayItems();
-  });
 
   // var fiveDaySettings = {
   //     "url": `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=a8bcffded6bdeeb862d36f82c2ad45cc`,
@@ -248,6 +253,3 @@ $(document).ready(function () {
 
 
   //The city searched is prepended to the history list
-
-
-});
