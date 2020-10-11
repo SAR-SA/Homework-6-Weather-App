@@ -32,6 +32,9 @@ $(document).ready(function () {
       "timeout": 0,
     };
 
+    cities.push(cityName);
+    searchInput.value = "";
+
     $.ajax(settings).done(function (response) {
       console.log(response);
       // var kelToF = ()
@@ -99,6 +102,8 @@ $(document).ready(function () {
             }
              storeCities();
           })
+        });
+        
         init();
         var cities = [];
 
@@ -140,26 +145,23 @@ $(document).ready(function () {
           }
 
           // Add new todoText to todos array, clear the input
-          cities.push(cityName);
-          searchInput.value = "";
+         
 
           // Store updated todos in localStorage, re-render the list
           storeCities();
           renderCities();
-      });
-
-
-    //       // Variables
-    // const cities = [];
-
-    // // FUNCTIONS
-    // function newCity() {
-    //   cityList.innerHTML = "";
-
-    //    //Render a new li for each todo
-    //    for (var i = 0; i < cities.length; i++) {
-    //      var city = cities[i];
-
+        
+        //       // Variables
+        // const cities = [];
+        
+        // // FUNCTIONS
+        // function newCity() {
+          //   cityList.innerHTML = "";
+          
+          //    //Render a new li for each todo
+          //    for (var i = 0; i < cities.length; i++) {
+            //      var city = cities[i];
+            
     //      var li = document.createElement("li");
     //      li.textContent = city;
     //      li.setAttribute("data-index", i);
