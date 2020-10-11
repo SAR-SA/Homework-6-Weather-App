@@ -1,5 +1,5 @@
 $(function () {
-  
+
   let uV = $(".uvIndex");
   const todayDate = moment().format(" (M/D/YYYY)");
   const searchBtn = $("#searchBtn");
@@ -89,63 +89,76 @@ $(function () {
           })
       });
 
-    
+
   });
 
   var cities = [];
 
-    init();
+  init();
 
-    searchBtn.on("click", function (event) {
-      event.preventDefault();
+  searchBtn.on("click", function (event) {
+    event.preventDefault();
 
-      var cityName = searchInput.val.trim();
+    var cityName = searchInput.val().trim();
+    console.log("cityName", cityName);
+    storeCity(cityName);
 
-      // Return from function early if submitted todoText is blank
-      if (cityText === "") {
-        return;
-      }
-
-      // Add new todoText to todos array, clear the input
-      cities.push(cityName);
-      searchInput.value = "";
-
-      // Store updated todos in localStorage, re-render the list
-      storeCities();
-      renderCities();
-    });
-
-    function renderCities() {
-      cityList.innerHTML = "";
-
-      for (var i = 0; i < cities.length; i++) {
-        var city = cities[i];
-
-        var li = document.createElement("li");
-        li.textContent = city;
-        li.setAttribute("data-index", i);
-
-        var button = document.createElement("button");
-        button.textContent = "Delete";
-
-        li.appendChild(button);
-        cityList.appendChild(li);
-      }
+    // Return from function early if submitted todoText is blank
+    if (cityName === "") {
+      return;
     }
 
-    function init() {
-      var storedCities = JSON.parse(localStorage.getItem("cities"));
+    // Add new todoText to todos array, clear the input
+    cities.push(cityName);
+    console.log("Pushing...", cities);
+    searchInput.value = "";
 
-      if (storedCities !== null) {
-        cities = storedCities;
-      }
+    // Store updated todos in localStorage, re-render the list
+    storeCities();
+    renderCities();
+  });
 
-      renderCities();
+  function renderCities() {
+    cityList.innerHTML = "";
+
+    for (var i = 0; i < cities.length; i++) {
+      var city = cities[i];
+
+      var li = document.createElement("li");
+      li.textContent = city;
+      li.setAttribute("data-index", i);
+
+      var button = document.createElement("button");
+      button.textContent = "Delete";
+
+      li.appendChild(button);
+      cityList.appendChild(li);
+    }
+  }
+
+  function init() {
+    var storedCities = JSON.parse(localStorage.getItem("cities"));
+
+    if (storedCities !== null) {
+      cities = storedCities;
     }
 
-    function storeCities() {
-      localStorage.setItem("cities", JSON.stringify(cities));
-    }
+    renderCities();
+  }
+
+  function storeCities(newCity) {
+    // get cities from ls
+  var existingCities = localStorage.getItem("cities");
+  // parse it, or if null provide empty array
+  var existingCitiesArray = JSON.parse(existingCities) || [];
+
+  // add new city
+  existingCitiesArray.push(newCity);
+
+  // send it
+  localStorage.setItem("cities", existingCitiesArray);
+
+  }
 
 });
 
