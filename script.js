@@ -118,20 +118,24 @@ $(function () {
   });
 
   function renderCities() {
+    cityList.empty();
     cityList.innerHTML = "";
+    console.log("cities in the renderCities fun : ", cities);
 
     for (var i = 0; i < cities.length; i++) {
       var city = cities[i];
+      var li = $("<li>").addClass("list-group-item list-group-item-collection").text(city);
+      cityList.append(li);
 
-      var li = document.createElement("li");
-      li.textContent = city;
-      li.setAttribute("data-index", i);
+      // var li = document.createElement("li");
+      // li.textContent = city;
+      // li.setAttribute("data-index", i);
 
-      var button = document.createElement("button");
-      button.textContent = "Delete";
+      // var button = document.createElement("button");
+      // button.textContent = "Delete";
 
-      li.appendChild(button);
-      cityList.appendChild(li);
+      // li.appendChild(button);
+      // cityList.append(li);
     }
   }
 
